@@ -12,7 +12,7 @@ source purrvenv/bin/activate;
 pip install --upgrade pip setuptools wheel;
 
 # Add piwheels for faster pip installations on Raspberry Pi
-echo "deb http://www.piwheels.org/simple stretch main" | sudo tee /etc/apt/sources.list.d/piwheels.list;
+echo "deb http://www.piwheels.org/simple bullseye main" | sudo tee /etc/apt/sources.list.d/piwheels.list;
 sudo apt update;
 
 # Install OpenCV system dependencies
