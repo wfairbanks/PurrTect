@@ -17,5 +17,3 @@ pip install --upgrade wheel;
 pip install RPi.GPIO;
 pip install "opencv-python-headless<4.3";
 pip install flask;
-pip install --prefer-binary opencv-python;
-pip install --prefer-binary opencv-python-headless;
