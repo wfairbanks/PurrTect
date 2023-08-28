@@ -11,4 +11,6 @@ source purrvenv/bin/activate;
 # Install OpenCV and other Python libraries
 pip install --upgrade pip;
 pip install --upgrade pip setuptools wheel;
-pip3 install opencv-python opencv-python-headless RPi.GPIO flask;
+echo "deb http://www.piwheels.org/simple stretch main" | sudo tee -a /etc/apt/sources.list.d/piwheels.list;
+sudo apt update;
+pip install opencv-python, opencv-python-headless RPi.GPIO flask;
