@@ -9,4 +9,6 @@ python3 -m venv purrvenv;
 source purrvenv/bin/activate;
 
 # Install OpenCV and other Python libraries
+pip install --upgrade pip;
+pip install --upgrade pip setuptools wheel;
 pip3 install opencv-python opencv-python-headless RPi.GPIO flask;
