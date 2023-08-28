@@ -4,20 +4,28 @@
 ![N|Solid](https://i.imgur.com/IXANIV7.png)
 ## Installation
 
-```sh
 #Clone GitHub Repo
+```sh
 git clone https://github.com/wfairbanks/purrtect.git
+```
 
 #CD to Project Directory
+```sh
 cd purrtect
+```
 
 #Run Requirements Shell Script
+```sh
 ./deps.sh
+```
 
 #Activate Venv
+```sh
 source purrvenv/bin/activate
+```
 
 #Launch App
-cd myapp
+```sh
+cd myapp;
 python3 app.py
 ```
