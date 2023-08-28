@@ -10,5 +10,3 @@ source purrvenv/bin/activate;
 
 # Install OpenCV and other Python libraries
 pip3 install opencv-python opencv-python-headless RPi.GPIO flask;
-
-git clone
