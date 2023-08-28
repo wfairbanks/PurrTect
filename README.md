@@ -29,3 +29,13 @@ Launch App
 cd myapp;
 python3 app.py
 ```
+
+Find Hostname
+```sh
+hostname -I
+```
+
+Access the Webcam Feed: On a different device (like a laptop or smartphone) that's connected to the same local network as the Raspberry Pi, open a browser and navigate to:
+```sh
+http://[RASPBERRY_PI_IP]:5000/video_feed
+```
