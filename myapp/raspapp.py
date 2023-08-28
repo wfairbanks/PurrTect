@@ -1,60 +1,24 @@
 import cv2
 from flask import Flask, render_template, Response, request
+import RPi.GPIO as GPIO
 from time import sleep
 
-# Initialize Flask app
 app = Flask(__name__)
-
-# Check if running on Raspberry Pi
-ON_RASPBERRY_PI = False
-try:
-    import RPi.GPIO as GPIO
-    ON_RASPBERRY_PI = True
-except (ImportError, RuntimeError):
-    print("RPi.GPIO not available. Mocking GPIO functionalities.")
 
 # Servo pin configurations
 SERVO_PAN_PIN = 17
 SERVO_TRIGGER_PIN = 27
 
-if ON_RASPBERRY_PI:
-    GPIO.setmode(GPIO.BCM)
-    GPIO.setup(SERVO_PAN_PIN, GPIO.OUT)
-    GPIO.setup(SERVO_TRIGGER_PIN, GPIO.OUT)
-    pan_servo = GPIO.PWM(SERVO_PAN_PIN, 50)
-    trigger_servo = GPIO.PWM(SERVO_TRIGGER_PIN, 50)
-    pan_servo.start(0)
-    trigger_servo.start(0)
-else:
-    # Define mock methods here, if needed
-    class MockGPIO:
-        BCM = None
-        OUT = None
+# Set up GPIO pins
+GPIO.setmode(GPIO.BCM)
+GPIO.setup(SERVO_PAN_PIN, GPIO.OUT)
+GPIO.setup(SERVO_TRIGGER_PIN, GPIO.OUT)
 
-        @staticmethod
-        def setmode(mode):
-            pass
+pan_servo = GPIO.PWM(SERVO_PAN_PIN, 50)
+trigger_servo = GPIO.PWM(SERVO_TRIGGER_PIN, 50)
 
-        @staticmethod
-        def setup(pin, mode):
-            pass
-
-        @staticmethod
-        def PWM(pin, freq):
-            class MockPWM:
-                def start(self, value):
-                    pass
-
-                def ChangeDutyCycle(self, value):
-                    pass
-
-            return MockPWM()
-
-    GPIO = MockGPIO
-    pan_servo = GPIO.PWM(SERVO_PAN_PIN, 50)
-    trigger_servo = GPIO.PWM(SERVO_TRIGGER_PIN, 50)
-    pan_servo.start(0)
-    trigger_servo.start(0)
+pan_servo.start(0)
+trigger_servo.start(0)
 
 # Load the pre-trained model for cat detection
 cat_cascade = cv2.CascadeClassifier(cv2.data.haarcascades + "haarcascade_frontalcatface.xml")
