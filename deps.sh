@@ -9,14 +9,13 @@ python3 -m venv purrvenv;
 source purrvenv/bin/activate;
 
 # Upgrade pip for better performance and compatibility
-pip install --upgrade pip setuptools wheel;
-
-# Add piwheels for faster pip installations on Raspberry Pi
-echo "deb http://www.piwheels.org/simple bullseye main" | sudo tee /etc/apt/sources.list.d/piwheels.list;
-sudo apt update;
-
-# Install OpenCV system dependencies
-sudo apt-get install -y libopencv-dev;
+pip install --upgrade pip; 
+pip install --upgrade setuptools;
+pip install --upgrade wheel;
 
 # Install Python libraries using piwheels for faster installations
-pip install opencv-python opencv-python-headless RPi.GPIO flask;
+pip install RPi.GPIO;
+pip install "opencv-python-headless<4.3";
+pip install flask;
+pip install --prefer-binary opencv-python;
+pip install --prefer-binary opencv-python-headless;
