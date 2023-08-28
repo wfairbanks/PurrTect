@@ -10,10 +10,3 @@ source purrvenv/bin/activate;
 
 # Install OpenCV and other Python libraries
 pip3 install opencv-python opencv-python-headless RPi.GPIO flask;
-
-# Activate Venv
-source purrvenv/bin/activate;
-
-#Launch App
-cd myapp;
-python3 app.py
