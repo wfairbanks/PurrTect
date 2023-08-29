@@ -1,4 +1,5 @@
 import cv2
+import os
 from flask import Flask, render_template, Response, request
 from time import sleep
 
@@ -6,9 +7,11 @@ from time import sleep
 app = Flask(__name__)
 
 # Check if running on Raspberry Pi
+GPIO.setwarnings(False)
 ON_RASPBERRY_PI = False
 try:
     import RPi.GPIO as GPIO
+    GPIO.setwarnings(False)
     ON_RASPBERRY_PI = True
 except (ImportError, RuntimeError):
     print("RPi.GPIO not available. Mocking GPIO functionalities.")
@@ -57,7 +60,15 @@ else:
     trigger_servo.start(0)
 
 # Load the pre-trained model for cat detection
-cat_cascade = cv2.CascadeClassifier(cv2.data.haarcascades + "haarcascade_frontalcatface.xml")
+
+
+xml_path = "/home/wfairbanks/Projects/purrtect/myapp/haarcascade_frontalcatface.xml"
+
+# Load the cascade classifier
+if os.path.exists(xml_path):
+    cat_cascade = cv2.CascadeClassifier(xml_path)
+else:
+    print("XML file not found.")
 
 def detect_cat(frame):
     gray = cv2.cvtColor(frame, cv2.COLOR_BGR2GRAY)
